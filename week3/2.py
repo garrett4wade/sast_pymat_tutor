@@ -1,5 +1,6 @@
 import threading
 import numpy as np
+import time
 
 
 class MyThread:  # you need to inherit threading.Thread
@@ -9,7 +10,7 @@ class MyThread:  # you need to inherit threading.Thread
     def run(self):
         # run some cpu-bound task, i.e. numpy array computation
         arr = np.random.randn(64)
-        while True:
+        for _ in range(5000):
             arr2 = arr**2
             arr = (arr2 - np.mean(arr2)) / (np.std(arr2) + 1e-8)
 
