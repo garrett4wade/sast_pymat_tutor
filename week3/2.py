@@ -1,4 +1,5 @@
 import threading
+import numpy as np
 
 
 class MyThread:  # you need to inherit threading.Thread
@@ -6,8 +7,11 @@ class MyThread:  # you need to inherit threading.Thread
         pass
 
     def run(self):
-        # run some task, or simply invoke time.sleep
-        pass
+        # run some cpu-bound task, i.e. numpy array computation
+        arr = np.random.randn(64)
+        while True:
+            arr2 = arr**2
+            arr = (arr2 - np.mean(arr2)) / (np.std(arr2) + 1e-8)
 
 
 if __name__ == "__main__":
